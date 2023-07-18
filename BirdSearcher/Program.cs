@@ -1,5 +1,6 @@
 using BirdSearcher.Models;
 using BirdSearcher.Services;
+using Microsoft.Extensions.Configuration;
 
 //var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +33,12 @@ using BirdSearcher.Services;
 var httpClient = new HttpClient();
 var observationService = new ObservationService(httpClient);
 
-List<Observation> observations  = await observationService.GetRecentObservationsByRegionCode("PL");
+var config = new ConfigurationBuilder()
+          .AddJsonFile("appsettings.json")
+          .Build();
+
+var apiKey = config.GetSection("eBirdApi:ApiKey").Value;
+List<Observation> observations = await observationService.GetRecentObservationsByRegionCode("PL", apiKey);
 
 foreach (var observation in observations)
 {

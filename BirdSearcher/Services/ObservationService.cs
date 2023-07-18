@@ -13,9 +13,8 @@ public class ObservationService
         _httpClient = httpClient;
     }
 
-    public async Task<List<Observation>> GetRecentObservationsByRegionCode(string regionCode)
+    public async Task<List<Observation>> GetRecentObservationsByRegionCode(string regionCode, string apiKey)
     {
-        string apiKey = "715f6g7c93hr";
         var response = await _httpClient.GetAsync($"https://api.ebird.org/v2/data/obs/{regionCode}/recent?key={apiKey}");
         response.EnsureSuccessStatusCode();
 
