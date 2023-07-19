@@ -36,7 +36,7 @@ public class ObservationServiceTests
         var observationService = new ObservationService(client);
 
         // Act
-        var result = await observationService.GetRecentObservationsByRegionCode("PL", "myApiKey");
+        var result = await observationService.GetRecentObservationsByRegionCode("PL");
 
         // Assert
         Assert.NotNull(result);

@@ -33,12 +33,7 @@ using Microsoft.Extensions.Configuration;
 var httpClient = new HttpClient();
 var observationService = new ObservationService(httpClient);
 
-var config = new ConfigurationBuilder()
-          .AddJsonFile("appsettings.json")
-          .Build();
-
-var apiKey = config.GetSection("eBirdApi:ApiKey").Value;
-List<Observation> observations = await observationService.GetRecentObservationsByRegionCode("PL", apiKey);
+List<Observation> observations = await observationService.GetRecentObservationsByRegionCode("PL");
 
 foreach (var observation in observations)
 {
