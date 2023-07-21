@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BirdSearcher\BirdSearcher.csproj" />
+    <ProjectReference Include="..\ReactApp\ReactApp.csproj" />
   </ItemGroup>
 
 </Project>

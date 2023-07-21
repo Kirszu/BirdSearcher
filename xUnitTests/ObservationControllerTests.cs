@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Moq;
 using Moq.Protected;
 using Xunit;
-using BirdSearcher.Models;
-using BirdSearcher.Services;
+using ReactApp.Models;
+using ReactApp.Controllers;
+using ReactApp.APICallHelpers;
 
-public class ObservationServiceTests
+public class ObservationControllerTests
 {
     [Fact]
     public async Task GetRecentObservationsByRegionCode_Should_Return_Observations()
@@ -32,8 +33,9 @@ public class ObservationServiceTests
             });
 
         var client = new HttpClient(mockHttpMessageHandler.Object);
+        HttpService _httpService = new(client);
 
-        var observationService = new ObservationService(client);
+        var observationService = new ObservationController(_httpService);
 
         // Act
         var result = await observationService.GetRecentObservationsByRegionCode("PL");
