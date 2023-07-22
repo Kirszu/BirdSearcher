@@ -20,7 +20,7 @@ public class ObservationController : ControllerBase
     [HttpGet("{regionCode}/recent")]
     public async Task<List<Observation>> GetRecentObservationsByRegionCode(string regionCode)
     {
-        var request = _httpService.GetRequestBuilder($"https://api.ebird.org/v2/data/obs/{regionCode}/recent");
+        var request = _httpService.GetRequestBuilder($"https://api.ebird.org/v2/data/obs/{regionCode}/recent?sppLocale=pl");
         var responseContent = await _httpService.GetResponseContent(request);
 
         var observations = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Observation>>(responseContent);
